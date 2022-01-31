@@ -53,7 +53,7 @@ def liked(access_code):
     S = []
     
     stuff = r.json()
-    print(stuff["next"])
+    # print(stuff["next"])
     for k in range(0,len(stuff["items"])):
         S.append(stuff["items"][k]["track"]["name"])
 
@@ -63,9 +63,12 @@ def liked(access_code):
         sauce = stuff["next"]
         r = requests.get(sauce,headers=header)
         stuff = r.json()
-
-        for k in range(0,len(stuff["items"])):
-            S.append(stuff["items"][k]["track"]["name"])
+        O = stuff["items"]
+        for k in range(0,len(O)):
+            artist = O[k]["track"]["artists"][0]["name"]
+            song = stuff["items"][k]["track"]["name"]
+            P = song +" "+artist+" audio"
+            S.append(P)
 
 
     return S

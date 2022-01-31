@@ -42,16 +42,24 @@ def get_playlist(id):
     stuff = r.json()
 
     import json
-    # json.dump(stuff,f,indent=4)
+    f = open("tmp.json","w")
+    json.dump(stuff,f,indent=4)
     O = stuff["tracks"]["items"]
 
-
+    
     n = len(O)
 
     S = []
     for i in range(0,n):
         # print(O[i]["track"]["name"])
-        S.append(O[i]["track"]["name"])
+        name = O[i]["track"]["name"]
+        artist = O[i]["track"]["artists"][0]["name"]
+    
+        P = name+" "+artist+ " audio"
+        S.append(P)
+
+        # print(O[i]["artist"])
+        # print(O[i]["track"]["artist"])
     return S    
 
 

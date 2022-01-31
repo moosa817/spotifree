@@ -24,4 +24,4 @@ def convert(src):
             os.remove(file)
 
 
-# convert("/mnt/d/projects/spotifree_v2/tast/")
+#convert("/mnt/d/songs/")
