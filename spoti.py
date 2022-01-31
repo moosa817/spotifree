@@ -1,15 +1,17 @@
 import requests
 import base64
 import datetime
-client_id = "ea4b936d7a58423bb3cf513c1135046c"
-client_secret = "7cbcdf518f8e443ca4a20400360277be"
+import json
+ff = open("/mnt/d/projects/spotifree_v2/config.json","r")
+data = json.load(ff)
+client_id = data["client_id"]
+client_secret = data["client_secret"]
 
 
 
 def get_playlist(id):
     client_creds = f"{client_id}:{client_secret}"
     client_creds_bs64 = base64.b64encode(client_creds.encode())
-    print(client_creds_bs64)
 
     token_url = "https://accounts.spotify.com/api/token"
     method = "POST"
@@ -23,7 +25,7 @@ def get_playlist(id):
     r = requests.post(token_url,data=token_data,headers=header)
 
     repsonse = r.json()
-    print(repsonse)
+    
 
     access_token = repsonse["access_token"]
     expire = repsonse["expires_in"]

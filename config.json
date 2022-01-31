@@ -1,4 +1,6 @@
 {
     "client_id":"ea4b936d7a58423bb3cf513c1135046c",
-    "client_secret":"7cbcdf518f8e443ca4a20400360277be"
+    "client_secret":"7cbcdf518f8e443ca4a20400360277be",
+    "default_src":"/mnt/d/songs/",
+    "default_playlist":"7BKdS2hAIqvU1pfXQxFZIj"
 }
