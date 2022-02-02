@@ -56,11 +56,9 @@ def download(urls,src):
 
             ydl_opts = {
                 'extract-audio':True,
-                'aext':'mp3',
                 'format': "bestaudio",
                 'extract-audio':True,
                 'audio-format':'mp3',
-                'ext':'mp3',
                 'postprocessors': [{
                     # Embed metadata in video using ffmpeg.
                     # ℹ️ See yt_dlp.postprocessor.FFmpegMetadataPP for the arguments it accepts
@@ -82,11 +80,21 @@ def download(urls,src):
             os.chdir(src)
             with yt_dlp.YoutubeDL(ydl_opts) as ydl:
                 ydl.add_post_processor(MyCustomPP())
-                info = ydl.extract_info(url)
-                print(f"Downloading ..{info['title']}")
+                info = ydl.extract_info(url,download=False)
+                print(info["filesize"])
+
+                if info["filesize"] > 12582912:
+                    print("Skipping ....,",info["title"]," too big awh")
+                    continue
+                    
+                else:
+                    print(f"Downloading ..{info['title']}")
+                    ydl.download(url)
+
+
 
                 with open("/mnt/d/projects/spotifree_v2/stuff/downloaded.txt","a")as user_data:
                     user_data.write(f"{url}\n")
                         
 
-# download("https://www.youtube.com/watch?v=IJYDVPPAkT0","/mnt/d/projects/spotifree_v2/tast/")
+# download(["https://www.youtube.com/watch?v=RfnE6QIpyl0"],"/mnt/d/projects/spotifree_v2/test/")
